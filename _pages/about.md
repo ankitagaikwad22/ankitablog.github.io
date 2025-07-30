@@ -82,6 +82,7 @@ In SPINN, the number of input variables (coordinates) is minimal (for example, t
 <div style="text-align: center;">Figure 3: Architecture (Single Input)</div>
 
 
+
 SPINNs solve d-dimensional PDEs using a separated neural network design in which each input dimension is processed by a distinct MLP. Each of these networks converts a scalar into a feature vector. The final scalar output is then calculated by performing an element-wise product on these vectors and summing over the shared rank dimension. 
 Mathematically, the output of the model is:
 
@@ -114,7 +115,7 @@ Each model was evaluated using:
 -	GPU memory usage
 -	Rank sensitivity (for SPINNs)
 
-## Visual Summary of Results
+
 
 The figure below summarizes SPINN’s performance across several PDE benchmarks:
 ![](images/Blog_images/Results.png)
@@ -171,6 +172,12 @@ Navier-Stokes governs fluid flow, and solving it accurately is central to comput
 
 3. Crucially, SPINN achieved this without even using a causal loss function — which Causal PINNs depend on.
 
+
+![](images/Blog_images/3D_Navierstokes.png)
+<div style="text-align: center;">Figure 4: 3D Navier-Stokes Result</div>
+
+
+
 ### Navier-Stokes Equation (3+1)D
 
 To top it off, SPINN was extended to the extremely complex (3+1)D Navier-Stokes, involving 33 derivative terms!
@@ -180,5 +187,9 @@ Even with this complexity:
 -    SPINN trained in under 30 minutes
 -    Reached a relative error of 1.9e-3
 -    Used less than 3GB of GPU memory at 32⁴ collocation points
+
+
+![](images/Blog_images/4D_Navierstokes.png)
+<div style="text-align: center;">Figure 5: 4D Navier-Stokes Result</div>
 
 This cements SPINN as a highly scalable, fast, and accurate framework for chaotic and nonlinear PDEs in very high dimensions
