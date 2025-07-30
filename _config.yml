@@ -21,7 +21,7 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "images/Blog_images/Profile_Image.jpeg"
   name             : "Ankita Gaikwad"
   pronouns         : # example: "she/her"
   bio              : "MSc. InfoTech Student at Universität Stuttgart"
