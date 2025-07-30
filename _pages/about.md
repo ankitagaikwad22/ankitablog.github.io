@@ -64,6 +64,15 @@ It's a new way to structure and train PINNs that:
 
 To understand why SPINN is so quick, we must first consider how derivatives are produced in deep learning – especially, by automatic differentiation. There are two major modes:
 
+## Forward vs Reverse Mode AD
+
+
+| Mode         | Best For                            | Use Case Example          |
+|--------------|-------------------------------------|---------------------------|
+| Reverse-mode | Many inputs → single/scalar output  | Backpropagation in neural networks |
+| Forward-mode | Few inputs → many outputs           | Computing PDE residuals   |
+
+
 **Reverse-Mode AD:**
 
 Reverse-Mode AD (used in backpropagation) is ideal for functions with multiple inputs and a single output (e.g., loss functions). It operates by first performing a forward pass to compute outputs, followed by a backward pass to calculate gradients with respect to inputs. This is useful for training neural networks that require the gradient of a scalar loss with respect to all model parameters.
@@ -73,7 +82,6 @@ Reverse-Mode AD (used in backpropagation) is ideal for functions with multiple i
 Forward-Mode AD works best for functions with few inputs and many outputs, such as computing derivatives of solutions with respect to input coordinates in PDEs. Forward-mode AD computes these derivatives immediately during the forward pass, making it more efficient when assessing PDE residuals.
 
 In SPINN, the number of input variables (coordinates) is minimal (for example, time and space), but the number of outputs (solution evaluations at various points) is huge, making forward-mode AD the best fit.
-
 
 
 # SPINN Architecture
@@ -193,3 +201,15 @@ Even with this complexity:
 <div style="text-align: center;">Figure 5: 4D Navier-Stokes Result</div>
 
 This cements SPINN as a highly scalable, fast, and accurate framework for chaotic and nonlinear PDEs in very high dimensions
+
+
+## 📊 Experimental Summary – SPINN vs PINNS
+
+| PDE Problem              | Best Accuracy Achieved By     | Speed      | Memory Usage       |
+|--------------------------|-------------------------------|------------|--------------------|
+| Diffusion     | SPINN-mod                     | 52× faster | 29× less           |
+| Helmholtz       | SPINN-mod                     | 62× faster | 29× less           |
+| Klein-Gordon (2+1)D | SPINN-mod                     | 62× faster | 29× less           |  
+| Klein-Gordon (3+1D)      | SPINN                         | 160× more points | Not feasible for PINN           |
+| Navier-Stokes (2+1D)     | SPINN                         | 60× faster |  ~75% less usage  |
+| Navier-Stokes (3+1D)     | SPINN (Relative error 1.9e-3) | <30 min    | <3 GB (at 32⁴ pts) |
