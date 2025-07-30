@@ -86,7 +86,8 @@ In SPINN, the number of input variables (coordinates) is minimal (for example, t
 
 # SPINN Architecture
 
-![](images/Blog_images/Architecture.png)
+
+<img src="images/Blog_images/Architecture.png" alt="Architecture" style="width: 70%;" />
 <div style="text-align: center;">Figure 3: Architecture (Single Input)</div>
 
 
@@ -181,7 +182,8 @@ Navier-Stokes governs fluid flow, and solving it accurately is central to comput
 3. Crucially, SPINN achieved this without even using a causal loss function — which Causal PINNs depend on.
 
 
-![](images/Blog_images/3D_Navierstokes.png)
+
+<img src="images/Blog_images/3D_Navierstokes.png" alt="3D_Navierstokes" style="width: 60;" />
 <div style="text-align: center;">Figure 4: 3D Navier-Stokes Result</div>
 
 
@@ -197,13 +199,13 @@ Even with this complexity:
 -    Used less than 3GB of GPU memory at 32⁴ collocation points
 
 
-![](images/Blog_images/4D_Navierstokes.png)
+<img src="images/Blog_images/4D_Navierstokes.png" alt="4D_Navierstokes" style="width: 60;" />
 <div style="text-align: center;">Figure 5: 4D Navier-Stokes Result</div>
 
 This cements SPINN as a highly scalable, fast, and accurate framework for chaotic and nonlinear PDEs in very high dimensions
 
 
-## 📊 Experimental Summary – SPINN vs PINNS
+## Experimental Summary – SPINN vs PINNS
 
 | PDE Problem              | Best Accuracy Achieved By     | Speed      | Memory Usage       |
 |--------------------------|-------------------------------|------------|--------------------|
@@ -213,3 +215,26 @@ This cements SPINN as a highly scalable, fast, and accurate framework for chaoti
 | Klein-Gordon (3+1D)      | SPINN                         | 160× more points | Not feasible for PINN           |
 | Navier-Stokes (2+1D)     | SPINN                         | 60× faster |  ~75% less usage  |
 | Navier-Stokes (3+1D)     | SPINN (Relative error 1.9e-3) | <30 min    | <3 GB (at 32⁴ pts) |
+
+
+
+## Conclusion and Future Work
+
+
+SPINNs are a significant achievement in the field of physics-based machine learning.  By integrating the principles of variable separation and low-rank tensor decomposition with forward-mode automatic differentiation, SPINNs provide an elegant, scalable, and extremely efficient framework for solving high-dimensional PDEs.
+ Key takeaways are:
+
+1. **Efficiency:** SPINNs offer significant gains in performance and memory usage, making them suitable for large-scale scientific simulations.
+2. **Scalability:** SPINNs can solve 3D+time PDEs on a single GPU, surpassing typical PINNs that struggle with memory limits.
+3. **Accuracy:** SPINNs maintain or increase solution accuracy across many PDE types, despite their reduced computational complexity.
+
+Looking forward, several exciting directions are possible:
+- **Adaptive Rank Learning:** Future models can dynamically learn the ideal tensor rank during training, eliminating the need for human configuration.
+- **Integration with Neural Operators:** Combining SPINNs with operator learning methods like DeepONets or FNOs can improve generalization across PDE families.
+- **Geometric Generalization:** Extending SPINNs to irregular domains or manifolds could expand their use in engineering and physics. 
+- **Robustness to Noise or Data:** Incorporating measurement data or noisy limitations can improve simulation's robustness to real-world observations.
+ 
+
+Finally, SPINNs provide a principled but practical technique to solving large-scale PDEs.  They not only overcome the limits of ordinary PINNs, but also pave the way for neural network-based solutions to hitherto intractable scientific challenges.
+
+
