@@ -15,7 +15,9 @@ p {
 
 
 Welcome to my blog post describing and explaining the paper "Separable Physics-Informed Neural Networks" by Cho et al., which was presented at NeurIPS 2023. This research describes a unique and scalable method for solving PDEs that restructures how neural networks model multidimensional input. As someone who is very interested in the convergence of deep learning and computational physics, I found SPINNs to be a novel and interesting approach to addressing the bottlenecks of previous PINN structures. It demonstrates how traditional concepts such as variable separation and tensor decomposition may be combined with neural networks to provide faster, more efficient scientific computing models.
+
 This blog article is based on my reading of the research, my seminar presentation on SPINNs, and comparisons with other comparable methods such as PINNs, Causal PINNs, and low-rank neural PDE solvers. I've endeavored to make the concepts comprehensible even if you're not deeply into numerical methods or theoretical machine learning.
+
 In this blog post, we examine Separable Physics-Informed Neural Networks (SPINNs), a sophisticated method for applying machine learning to the solution of high-dimensional partial differential equations (PDEs). The exponential cost of sampling and differentiation in high dimensions affects the scalability of traditional Physics-Informed Neural Networks (PINNs). By segmenting the network according to input dimensions and utilizing forward-mode automatic differentiation, SPINNs provide a straightforward yet effective redesign. When combined, these two concepts and result in significant increases in speed and memory effectiveness. With an emphasis on the physics-inspired motivations and little mathematical overhead, this post seeks to make the concepts underlying SPINNs understandable and approachable. Let’s decompose.
 
 
@@ -76,7 +78,8 @@ In SPINN, the number of input variables (coordinates) is minimal (for example, t
 
 # SPINN Architecture
 
-
+![](images/Blog_images/Architecture.png)
+<div style="text-align: center;">Figure 3: Architecture (Single Input)</div>
 
 
 SPINNs solve d-dimensional PDEs using a separated neural network design in which each input dimension is processed by a distinct MLP. Each of these networks converts a scalar into a feature vector. The final scalar output is then calculated by performing an element-wise product on these vectors and summing over the shared rank dimension. 
@@ -114,9 +117,10 @@ Each model was evaluated using:
 ## Visual Summary of Results
 
 The figure below summarizes SPINN’s performance across several PDE benchmarks:
-![SPINN Results](D:\BLOG\ankitablog.github.io\images/Blog_images/Results.png)
+![](images/Blog_images/Results.png)
 
 ### Diffusion Equation
+
 The Diffusion equation is a foundational PDE in physics, used to model heat conduction and particle diffusion.
 
 1. In this experiment, SPINN-mod consistently achieves the best accuracy.
@@ -124,7 +128,9 @@ The Diffusion equation is a foundational PDE in physics, used to model heat cond
 -    52× faster than PINN-mod
 -    29× more memory-efficient
 3. Even when using the same number of points, SPINN delivers more accurate results with far less computational cost.
+
 ### Helmholtz Equation
+
 Helmholtz equations appear in problems involving wave propagation and vibrations, and are notoriously hard to solve due to high-frequency components.
 
 1. Traditional PINNs struggle here due to stiffness in gradient flow.
@@ -133,16 +139,20 @@ Helmholtz equations appear in problems involving wave propagation and vibrations
 -    Using 29× less GPU memory
 
 ### Klein-Gordon Equation (2+1D and 3+1D)
+
 The Klein-Gordon equation, important in quantum field theory, is tested in two forms:
 
 **(2+1)D Klein-Gordon**
+
 1. SPINN-mod outperforms all baselines, with:
 -    Lowest relative L₂ error
 -    62× faster runtime than PINN-mod
 -    29× memory savings
 2. As the number of collocation points increases, SPINN scales better than PINNs both computationally and numerically, enabling larger, more stable models.
 
+
 **(3+1)D Klein-Gordon**
+
 To really push the limits, the team tested SPINN in 4D by adding an extra spatial axis:
 
 1. PINNs (even with a modified MLP) hit memory limits at just 18⁴ points.
@@ -162,6 +172,7 @@ Navier-Stokes governs fluid flow, and solving it accurately is central to comput
 3. Crucially, SPINN achieved this without even using a causal loss function — which Causal PINNs depend on.
 
 ### Navier-Stokes Equation (3+1)D
+
 To top it off, SPINN was extended to the extremely complex (3+1)D Navier-Stokes, involving 33 derivative terms!
 
 Even with this complexity:
