@@ -18,7 +18,7 @@ In this blog post, we examine Separable Physics-Informed Neural Networks (SPINNs
 
 
 # Introduction
-
+hello
 
 Partial differential equations (PDEs) are a fundamental problem in computational science and engineering. PDEs are used in a variety of applications, including fluid flow and electromagnetic field simulations, as well as modeling quantum systems and weather patterns.  
 Traditional methods to PDE solutions are Finite Element Methods or Finite Difference Methods which require lots of computation and it struggle with high dimensions. SO it was so challenging for In real-world scenarios, especially in high dimensions or complex geometries, classical solvers become too expensive or impractical.
