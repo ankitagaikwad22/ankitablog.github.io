@@ -120,6 +120,7 @@ In SPINN, the number of input variables (coordinates) is minimal (for example, t
 </div>
 
 
+
 SPINNs solve d-dimensional PDEs using a separated neural network design in which each input dimension is processed by a distinct MLP. Each of these networks converts a scalar into a feature vector. The final scalar output is then calculated by performing an element-wise product on these vectors and summing over the shared rank dimension. 
 Mathematically, the output of the model is:
 
@@ -247,6 +248,15 @@ Even with this complexity:
 This cements SPINN as a highly scalable, fast, and accurate framework for chaotic and nonlinear PDEs in very high dimensions
 
 
+
+<div style="text-align: center;">
+  <img src="images/Blog_images/Navier_training.png" style="width: 75%; margin: 0 auto; display: block;" />
+  <p style="font-size: 0.95em; color: #555; text-align: center; margin-top: 0.5em;">
+    **Figure 1:** Training speed (w/ a single GPU) of our model compared to the causal PINN [4] in (2+1)-d Navier-Stokes equation of time interval [0, 0.1].
+
+  </p>
+</div>
+
 ## Experimental Summary – SPINN vs PINNS
 
 | PDE Problem              | Best Accuracy Achieved By     | Speed      | Memory Usage       |
@@ -290,3 +300,4 @@ Finally, SPINNs provide a principled but practical technique to solving large-sc
 
 3. Lu, L., Meng, X., Mao, Z., & Karniadakis, G. E. (2021). *DeepXDE: A deep learning library for solving differential equations*. *SIAM Review*, 63(1), 208–228. 
 
+4. Sifan Wang, Shyam Sankaran, and Paris Perdikaris. Respecting causality is all you need for training physics-informed neural networks. arXiv preprint arXiv:2203.07404, 2022.
