@@ -24,7 +24,7 @@ In this blog post, we examine Separable Physics-Informed Neural Networks (SPINNs
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body" style="text-align: center;">
-      <div style="max-width: 650px; margin: 0 auto;">
+      <div style="max-width: 700px; margin: 0 auto;">
         <video id="teaser" autoplay controls muted loop playsinline style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
           <source src="images/Blog_videos/Navier_Stokes.mp4" type="video/mp4">
           Your browser does not support the video tag.
@@ -236,18 +236,12 @@ Even with this complexity:
 
 
 <div style="text-align: center; margin-top: 2em; margin-bottom: 1em;">
-  <img src="images/Blog_images/4D_Navierstokes.png" alt="4D Navier-Stokes Results" style="width: 65%; max-width: 900px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 8px rgba(0,0,0,0.1);" />
+  <img src="images/Blog_images/4D_Navierstokes.png" alt="4D Navier-Stokes Results" style="width: 55%; max-width: 900px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 8px rgba(0,0,0,0.1);" />
   <p style="font-size: 0.95em; color: #555; margin-top: 0.8em;">
     <strong>Figure 5:</strong> 4D Navier-Stokes results showing SPINN’s scalability and performance across different collocation resolutions.
   </p>
 </div>
 
-
-| Model | \( N_c \) | Relative \( L_2 \) Error | Runtime (mins) | Memory (MB) |
-|-------|-----------|--------------------------|----------------|-------------|
-| SPINN | \( 8^4 \) | 0.0090                   | 15.33          | 768         |
-| SPINN | \( 16^4 \) | 0.0041                   | 16.83          | 1,192       |
-| SPINN | \( 32^4 \) | 0.0019                   | 26.73          | 2,946       |
 
 
 This cements SPINN as a highly scalable, fast, and accurate framework for chaotic and nonlinear PDEs in very high dimensions
