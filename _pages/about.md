@@ -24,7 +24,7 @@ In this blog post, we examine Separable Physics-Informed Neural Networks (SPINNs
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body" style="text-align: center;">
-      <div style="max-width: 500px; margin: 0 auto;">
+      <div style="max-width: 650px; margin: 0 auto;">
         <video id="teaser" autoplay controls muted loop playsinline style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
           <source src="images/Blog_videos/Navier_Stokes.mp4" type="video/mp4">
           Your browser does not support the video tag.
@@ -36,7 +36,7 @@ In this blog post, we examine Separable Physics-Informed Neural Networks (SPINNs
 
 
 <div style="text-align: center;">
-  <p style="font-size: 0.95em; color: #555;">PINN solves multi-dimensional PDEs <strong>60×</strong> faster than conventional PINN.</p>
+  <p style="font-size: 0.95em; color: #555; text-align: center; margin-top: 0.5em;">Figure 1: PINN solves multi-dimensional PDEs 60× faster than conventional PINN. [1]</p>
 </div>
 
 
@@ -86,12 +86,16 @@ To understand why SPINN is so quick, we must first consider how derivatives are 
 ## Forward vs Reverse Mode AD
 
 
-**Table 1.** Comparison of Automatic Differentiation Modes
+
 
 | **Mode**        | **Best For**                          | **Use Case Example**                |
 |-----------------|---------------------------------------|-------------------------------------|
 | Reverse-mode    | Many inputs → single/scalar output    | Backpropagation in neural networks |
 | Forward-mode    | Few inputs → many outputs             | Computing PDE residuals            |
+
+<div style="text-align: center;">
+   <p style="font-size: 0.95em; color: #555; text-align: center; margin-top: 0.5em;">Table 1: Comparison of Automatic Differentiation Modes</p>
+</div>
 
 
 **Reverse-Mode AD:**
@@ -109,8 +113,10 @@ In SPINN, the number of input variables (coordinates) is minimal (for example, t
 
 
 <div style="text-align: center;">
-  <img src="images/Blog_images/Architecture.png" alt="SPINN Architecture" style="width:70%; margin:auto;" />
-  <p style="font-size: 0.95em; color: #555;">Figure 3: Architecture (Single Input)</p>
+  <img src="images/Blog_images/Architecture.png" alt="SPINN Architecture" style="width: 75%; margin: 0 auto; display: block;" />
+  <p style="font-size: 0.95em; color: #555; text-align: center; margin-top: 0.5em;">
+    Figure 2: Architecture (Single Input) [1]
+  </p>
 </div>
 
 
@@ -151,8 +157,8 @@ Each model was evaluated using:
 
 <div style="text-align: center; margin-top: 2em; margin-bottom: 1em;">
   <img src="images/Blog_images/Results.png" alt="SPINN PDE benchmark results" style="width: 90%; max-width: 1000px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 8px rgba(0,0,0,0.1);" />
-  <p style="font-size: 0.95em; color: #555; margin-top: 0.8em;">
-    <strong>Figure:</strong> SPINN’s performance across various PDE benchmarks, including Diffusion, Helmholtz, and Klein-Gordon equations.
+  <p style="font-size: 0.95em; color: #555; text-align: center; margin-top: 0.5em;">
+    <strong>Figure:</strong> Figure 3: SPINN’s performance across various PDE benchmarks, including Diffusion, Helmholtz, and Klein-Gordon equations. [1]
   </p>
 </div>
 
@@ -180,7 +186,7 @@ Helmholtz equations appear in problems involving wave propagation and vibrations
 
 The Klein-Gordon equation, important in quantum field theory, is tested in two forms:
 
-**(2+1)D Klein-Gordon**
+***(2+1)D Klein-Gordon***
 
 1. SPINN-mod outperforms all baselines, with:
 -    Lowest relative L₂ error
@@ -189,7 +195,7 @@ The Klein-Gordon equation, important in quantum field theory, is tested in two f
 2. As the number of collocation points increases, SPINN scales better than PINNs both computationally and numerically, enabling larger, more stable models.
 
 
-**(3+1)D Klein-Gordon**
+***(3+1)D Klein-Gordon***
 
 To really push the limits, the team tested SPINN in 4D by adding an extra spatial axis:
 
@@ -211,7 +217,7 @@ Navier-Stokes governs fluid flow, and solving it accurately is central to comput
 
 
 <div style="text-align: center; margin-top: 2em; margin-bottom: 1em;">
-  <img src="images/Blog_images/3D_Navierstokes.png" alt="3D Navier-Stokes" style="width: 80%; max-width: 900px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 8px rgba(0,0,0,0.1);" />
+  <img src="images/Blog_images/3D_Navierstokes.png" alt="3D Navier-Stokes" style="width: 70%; max-width: 900px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 8px rgba(0,0,0,0.1);" />
   <p style="font-size: 0.95em; color: #555; margin-top: 0.8em;">
     <strong>Figure 4:</strong> 3D Navier-Stokes results comparing SPINN to PINN variants in terms of error, runtime, and memory.
   </p>
@@ -230,11 +236,18 @@ Even with this complexity:
 
 
 <div style="text-align: center; margin-top: 2em; margin-bottom: 1em;">
-  <img src="images/Blog_images/4D_Navierstokes.png" alt="4D Navier-Stokes Results" style="width: 80%; max-width: 900px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 8px rgba(0,0,0,0.1);" />
+  <img src="images/Blog_images/4D_Navierstokes.png" alt="4D Navier-Stokes Results" style="width: 65%; max-width: 900px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 8px rgba(0,0,0,0.1);" />
   <p style="font-size: 0.95em; color: #555; margin-top: 0.8em;">
     <strong>Figure 5:</strong> 4D Navier-Stokes results showing SPINN’s scalability and performance across different collocation resolutions.
   </p>
 </div>
+
+
+| Model | \( N_c \) | Relative \( L_2 \) Error | Runtime (mins) | Memory (MB) |
+|-------|-----------|--------------------------|----------------|-------------|
+| SPINN | \( 8^4 \) | 0.0090                   | 15.33          | 768         |
+| SPINN | \( 16^4 \) | 0.0041                   | 16.83          | 1,192       |
+| SPINN | \( 32^4 \) | 0.0019                   | 26.73          | 2,946       |
 
 
 This cements SPINN as a highly scalable, fast, and accurate framework for chaotic and nonlinear PDEs in very high dimensions
@@ -253,7 +266,7 @@ This cements SPINN as a highly scalable, fast, and accurate framework for chaoti
 
 
 
-## Conclusion and Future Work
+## Conclusion and Future Work:
 
 
 SPINNs are a significant achievement in the field of physics-based machine learning.  By integrating the principles of variable separation and low-rank tensor decomposition with forward-mode automatic differentiation, SPINNs provide an elegant, scalable, and extremely efficient framework for solving high-dimensional PDEs.
