@@ -23,17 +23,21 @@ In this blog post, we examine Separable Physics-Informed Neural Networks (SPINNs
 
 <section class="hero teaser">
   <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay controls muted loop playsinline height="100%">
-        <source src="images/Blog_videos/Navier_Stokes.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <h2 class="subtitle has-text-centered">
-        SPINN solves multi-dimensional PDEs 60&times; faster than conventional PINN.
-      </h2>
+    <div class="hero-body" style="text-align: center;">
+      <div style="max-width: 800px; margin: 0 auto;">
+        <video id="teaser" autoplay controls muted loop playsinline style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+          <source src="images/Blog_videos/Navier_Stokes.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
+          SPINN solves multi-dimensional PDEs <strong>60×</strong> faster than conventional PINN.
+        </h2>
+      </div>
     </div>
   </div>
 </section>
+
+
 
 
 # Introduction
