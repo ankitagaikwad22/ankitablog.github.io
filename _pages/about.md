@@ -249,13 +249,14 @@ This cements SPINN as a highly scalable, fast, and accurate framework for chaoti
 
 
 
+
 <div style="text-align: center;">
   <img src="images/Blog_images/Navier_training.png" style="width: 75%; margin: 0 auto; display: block;" />
   <p style="font-size: 0.95em; color: #555; text-align: center; margin-top: 0.5em;">
     <strong>Figure 6:</strong> Training speed (w/ a single GPU) of our model compared to the causal PINN [4] in (2+1)-d Navier-Stokes equation of time interval [0, 0.1].
-
   </p>
 </div>
+
 
 ## Experimental Summary – SPINN vs PINNS
 
@@ -300,4 +301,5 @@ Finally, SPINNs provide a principled but practical technique to solving large-sc
 
 3. Lu, L., Meng, X., Mao, Z., & Karniadakis, G. E. (2021). *DeepXDE: A deep learning library for solving differential equations*. *SIAM Review*, 63(1), 208–228. 
 
-4. Sifan Wang, Shyam Sankaran, and Paris Perdikaris. Respecting causality is all you need for training physics-informed neural networks. arXiv preprint arXiv:2203.07404, 2022.
+4. Wang, S., Sankaran, S., & Perdikaris, P. (2022). *Respecting causality is all you need for training physics-informed neural networks*. arXiv preprint arXiv:2203.07404.  
+   [https://arxiv.org/abs/2203.07404](https://arxiv.org/abs/2203.07404)
