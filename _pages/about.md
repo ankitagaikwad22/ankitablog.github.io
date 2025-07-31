@@ -21,6 +21,21 @@ This blog article is based on my reading of the research, my seminar presentatio
 In this blog post, we examine Separable Physics-Informed Neural Networks (SPINNs), a sophisticated method for applying machine learning to the solution of high-dimensional partial differential equations (PDEs). The exponential cost of sampling and differentiation in high dimensions affects the scalability of traditional Physics-Informed Neural Networks (PINNs). By segmenting the network according to input dimensions and utilizing forward-mode automatic differentiation, SPINNs provide a straightforward yet effective redesign. When combined, these two concepts and result in significant increases in speed and memory effectiveness. With an emphasis on the physics-inspired motivations and little mathematical overhead, this post seeks to make the concepts underlying SPINNs understandable and approachable. Let’s decompose.
 
 
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay controls muted loop playsinline height="100%">
+        <source src="images/Blog_videos/Navier_Stokes.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <h2 class="subtitle has-text-centered">
+        SPINN solves multi-dimensional PDEs 60&times; faster than conventional PINN.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
 # Introduction
 
 
@@ -67,10 +82,12 @@ To understand why SPINN is so quick, we must first consider how derivatives are 
 ## Forward vs Reverse Mode AD
 
 
-| Mode         | Best For                            | Use Case Example          |
-|--------------|-------------------------------------|---------------------------|
-| Reverse-mode | Many inputs → single/scalar output  | Backpropagation in neural networks |
-| Forward-mode | Few inputs → many outputs           | Computing PDE residuals   |
+**Table 1.** Comparison of Automatic Differentiation Modes
+
+| **Mode**        | **Best For**                          | **Use Case Example**                |
+|-----------------|---------------------------------------|-------------------------------------|
+| Reverse-mode    | Many inputs → single/scalar output    | Backpropagation in neural networks |
+| Forward-mode    | Few inputs → many outputs             | Computing PDE residuals            |
 
 
 **Reverse-Mode AD:**
@@ -87,9 +104,10 @@ In SPINN, the number of input variables (coordinates) is minimal (for example, t
 # SPINN Architecture
 
 
-<img src="images/Blog_images/Architecture.png" alt="Architecture" style="width: 70%;" />
-<div style="text-align: center;">Figure 3: Architecture (Single Input)</div>
-
+<div style="text-align: center;">
+  <img src="images/Blog_images/Architecture.png" alt="SPINN Architecture" style="width:70%; margin:auto;" />
+  <p style="font-size: 0.95em; color: #555;">Figure 3: Architecture (Single Input)</p>
+</div>
 
 
 SPINNs solve d-dimensional PDEs using a separated neural network design in which each input dimension is processed by a distinct MLP. Each of these networks converts a scalar into a feature vector. The final scalar output is then calculated by performing an element-wise product on these vectors and summing over the shared rank dimension. 
@@ -126,8 +144,14 @@ Each model was evaluated using:
 
 
 
-The figure below summarizes SPINN’s performance across several PDE benchmarks:
-![](images/Blog_images/Results.png)
+
+<div style="text-align: center; margin-top: 2em; margin-bottom: 1em;">
+  <img src="images/Blog_images/Results.png" alt="SPINN PDE benchmark results" style="width: 90%; max-width: 1000px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 8px rgba(0,0,0,0.1);" />
+  <p style="font-size: 0.95em; color: #555; margin-top: 0.8em;">
+    <strong>Figure:</strong> SPINN’s performance across various PDE benchmarks, including Diffusion, Helmholtz, and Klein-Gordon equations.
+  </p>
+</div>
+
 
 ### Diffusion Equation
 
@@ -182,10 +206,12 @@ Navier-Stokes governs fluid flow, and solving it accurately is central to comput
 3. Crucially, SPINN achieved this without even using a causal loss function — which Causal PINNs depend on.
 
 
-
-<img src="images/Blog_images/3D_Navierstokes.png" alt="3D_Navierstokes" style="width: 60;" />
-<div style="text-align: center;">Figure 4: 3D Navier-Stokes Result</div>
-
+<div style="text-align: center; margin-top: 2em; margin-bottom: 1em;">
+  <img src="images/Blog_images/3D_Navierstokes.png" alt="3D Navier-Stokes" style="width: 80%; max-width: 900px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 8px rgba(0,0,0,0.1);" />
+  <p style="font-size: 0.95em; color: #555; margin-top: 0.8em;">
+    <strong>Figure 4:</strong> 3D Navier-Stokes results comparing SPINN to PINN variants in terms of error, runtime, and memory.
+  </p>
+</div>
 
 
 ### Navier-Stokes Equation (3+1)D
@@ -199,8 +225,13 @@ Even with this complexity:
 -    Used less than 3GB of GPU memory at 32⁴ collocation points
 
 
-<img src="images/Blog_images/4D_Navierstokes.png" alt="4D_Navierstokes" style="width: 60;" />
-<div style="text-align: center;">Figure 5: 4D Navier-Stokes Result</div>
+<div style="text-align: center; margin-top: 2em; margin-bottom: 1em;">
+  <img src="images/Blog_images/4D_Navierstokes.png" alt="4D Navier-Stokes Results" style="width: 80%; max-width: 900px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 8px rgba(0,0,0,0.1);" />
+  <p style="font-size: 0.95em; color: #555; margin-top: 0.8em;">
+    <strong>Figure 5:</strong> 4D Navier-Stokes results showing SPINN’s scalability and performance across different collocation resolutions.
+  </p>
+</div>
+
 
 This cements SPINN as a highly scalable, fast, and accurate framework for chaotic and nonlinear PDEs in very high dimensions
 
@@ -237,4 +268,14 @@ Looking forward, several exciting directions are possible:
 
 Finally, SPINNs provide a principled but practical technique to solving large-scale PDEs.  They not only overcome the limits of ordinary PINNs, but also pave the way for neural network-based solutions to hitherto intractable scientific challenges.
 
+
+## References:
+
+
+1. Cho, J., Nam, S., Yang, H., Hong, Y., Yun, S.-B., & Park, E. (2023). *Separable Physics-Informed Neural Networks*. In *Advances in Neural Information Processing Systems* (NeurIPS 2023), Spotlight presentation.  
+[https://jwcho5576.github.io/spinn.github.io/](https://jwcho5576.github.io/spinn.github.io/)
+
+2. Raissi, M., Perdikaris, P., & Karniadakis, G. E. (2019). *Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations*. *Journal of Computational Physics*, 378, 686–707. 
+
+3. Lu, L., Meng, X., Mao, Z., & Karniadakis, G. E. (2021). *DeepXDE: A deep learning library for solving differential equations*. *SIAM Review*, 63(1), 208–228. 
 
