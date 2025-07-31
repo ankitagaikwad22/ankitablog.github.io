@@ -251,7 +251,7 @@ This cements SPINN as a highly scalable, fast, and accurate framework for chaoti
 
 
 <div style="text-align: center;">
-  <img src="images/Blog_images/Navier_training.png" style="width: 75%; margin: 0 auto; display: block;" />
+  <img src="images/Blog_images/Navier_training.png" style="width: 85%; margin: 0 auto; display: block;" />
   <p style="font-size: 0.95em; color: #555; text-align: center; margin-top: 0.5em;">
     <strong>Figure 6:</strong> Training speed (w/ a single GPU) of our model compared to the causal PINN [4] in (2+1)-d Navier-Stokes equation of time interval [0, 0.1].
   </p>
